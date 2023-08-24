@@ -2,13 +2,8 @@
   "users": [
     {
       "username": "user123",
-      "password": "Password123!",
+      "password": "Password123",
       "email": "user123@example.com"
-    },
-    {
-      "username": "admin",
-      "password": "adminpassword",
-      "email": "admin@example.com"
-   }
+    }
   ]
 }
