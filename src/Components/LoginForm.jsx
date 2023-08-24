@@ -3,19 +3,19 @@ import {useEffect, useState} from 'react'
 
 export default function LoginForm(){
 
-    const [userData, setUserData] = useState(null)
-    const [loginStatus, setLoginStatus] = useState(null)
+    const [userData, setUserData] = useState(null) //stores state for user data submission (username/password)
+    const [loginStatus, setLoginStatus] = useState(null) //stores state for displaying login status
     
-    const {register, handleSubmit, formState : {errors}} = useForm()
+    const {register, handleSubmit, formState : {errors}} = useForm() 
 
-    const submittedData = (data) => {
+    const submittedData = (data) => { //(username/password) validation function, iterates through db.json until the user input details match, else fail
         const isMatch = userData.some((item) => {
             return data.username_LOG === item.username && data.password_LOG === item.password;
         });
-        setLoginStatus(isMatch ? "You have successfully logged in!" : "There's no such user, please register instead");
+        setLoginStatus(isMatch ? "You have successfully logged in!" : "There's no such user, please register instead"); //sets login status state
     }
 
-    useEffect(() => {
+    useEffect(() => { //fetches data from the fake backend, db.json file
         fetch('https://my-json-server.typicode.com/Kuciuks/react-login-form/users')
         .then(response => response.json())
         .then(data => setUserData(data))

@@ -6,10 +6,10 @@ import {useState} from 'react'
 
 export default function App() {
 
-    const [state, setState] = useState(null)
+    const [state, setState] = useState(null) //stores state of which button has been clicked (login/register)
 
 
-    const handleClick = (value) =>{
+    const handleClick = (value) =>{ 
         value == "login" ? setState(true)
         : setState(false)
     }
