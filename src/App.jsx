@@ -9,22 +9,16 @@ export default function App() {
     const [state, setState] = useState(null)
 
 
-    const handleLogin = () =>{
-        setState(true)
+    const handleClick = (value) =>{
+        value == "login" ? setState(true)
+        : setState(false)
     }
-
-    const handleRegister = () =>{
-        setState(false)
-    }
-
-
-    console.log(state)
 
     return(
         <div>
             <div>
-                <LoginBtn onClick={handleLogin}/>
-                <RegisterBtn onClick={handleRegister}/>
+                <LoginBtn onClick={handleClick}/>
+                <RegisterBtn onClick={handleClick}/>
             </div>
             <div>
                 {

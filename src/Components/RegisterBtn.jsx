@@ -1,5 +1,5 @@
 export default function RegisterBtn({onClick}){
     return(
-        <button onClick={onClick}>Register</button>
+        <button onClick={() => onClick("register")}>Register</button>
     )
 }
