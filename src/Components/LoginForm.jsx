@@ -11,8 +11,8 @@ export default function LoginForm(){
     const submittedData = (data) => {
         //console.log("Submitted data: ",data,"\n\n\nFetched user data: ",userData)
         userData.map((item) =>{
-            //console.log("data.username_LOG: ",data.username_LOG,"\nuserData.username: ",item.username)
-            //console.log("data.username_LOG: ",data.password_LOG,"\nuserData.username: ",item.password)
+            console.log("data.username_LOG: ",data.username_LOG,"\nuserData.username: ",item.username)
+            console.log("data.username_LOG: ",data.password_LOG,"\nuserData.username: ",item.password)
             data.username_LOG === item.username && data.password_LOG === item.password ? setLoginStatus("You have successfully logged in!")
             : setLoginStatus("There's no such user, please register instead")
         })
