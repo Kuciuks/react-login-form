@@ -12,17 +12,17 @@ export default function LoginForm(){
     return(
         <form onSubmit={handleSubmit(submittedData)}>
             <label htmlFor="username">Username: </label>
-            <input {...register("username",{
+            <input {...register("user_username",{
                 pattern: {
                     value: /^[A-Za-z\s]+$/,
                     message: "Using invalid symbols!"
                 },
                 required: "Required field!"
             })} id="username"></input>
-            <p>{errors.username?.message}</p>
+            <p>{errors.user_username?.message}</p>
 
             <label htmlFor="password">Password: </label>
-            <input {...register("password", {
+            <input {...register("user_password", {
                 pattern: {
                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%^*?&])[A-Za-z\d@$!%^*?&]{8,}$/,
                     message: "The password must contain: at least 8 characters, one lowercase letter, one uppercase letter, one digit, and one special character."
@@ -30,9 +30,9 @@ export default function LoginForm(){
                 required: "Required field!"
 
             })} id="password" type="password"></input>
-            <p>{errors.password?.message}</p>
+            <p>{errors.user_password?.message}</p>
 
-            <button type='submit'>Submit</button>
+            <button type='submit'>Login</button>
         </form>
     )
 }
