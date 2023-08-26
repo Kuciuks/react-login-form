@@ -1,12 +1,25 @@
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 export default function RegisterForm(){
 
     const {register, handleSubmit, formState : {errors}} = useForm()
 
+    const [userData, setUserData] = useState(null)
+    const [loginStatus, setLoginStatus] = useState(null)
     const submittedData = (data) => {
-        console.log(data)
+        
+        const isMatch = userData.some((item) => {
+            return data.email_REG === item.email;
+        })
+        setLoginStatus(isMatch ? "User has already been registered using this email" : "Successfully registered! Continue to log in!")
     }
+
+    useEffect(() => { //fetches data from the fake backend, db.json file
+        fetch('https://my-json-server.typicode.com/Kuciuks/react-login-form/users')
+        .then(response => response.json())
+        .then(data => setUserData(data))
+    },[])
 
     return(
         <form onSubmit={handleSubmit(submittedData)}>
