@@ -6,13 +6,26 @@ export default function RegisterForm(){
     const {register, handleSubmit, formState : {errors}} = useForm()
 
     const [userData, setUserData] = useState(null)
-    const [loginStatus, setLoginStatus] = useState(null)
     const submittedData = (data) => {
         
         const isMatch = userData.some((item) => {
             return data.email_REG === item.email;
         })
-        setLoginStatus(isMatch ? "User has already been registered using this email" : "Successfully registered! Continue to log in!")
+
+
+        isMatch ? console.log(`User has already been created using ${data.email_REG}`) : handleAddUser(data)
+
+    };
+
+
+    useEffect(() => { //fetches data from local server each time the userData changes.
+        fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(data => setUserData(data));
+    },[])
+
+
+    const handleAddUser = (data) => {
         // Send POST request to add new user
         fetch('http://localhost:3000/users', {
             method: "POST",
@@ -32,15 +45,8 @@ export default function RegisterForm(){
         .catch(error => {
             console.error("Error creating user:", error);
         });
-    };
+    }
 
-    useEffect(() => {
-        fetch('http://localhost:3000/users')
-            .then(response => response.json())
-            .then(data => setUserData(data));
-        }, []);
-        console.log(userData)
-    
 
 
     return(

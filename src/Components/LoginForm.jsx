@@ -16,7 +16,7 @@ export default function LoginForm(){
     }
 
     useEffect(() => { //fetches data from the fake backend, db.json file
-        fetch('https://my-json-server.typicode.com/Kuciuks/react-login-form/users')
+        fetch('http://localhost:3000/users')
         .then(response => response.json())
         .then(data => setUserData(data))
     },[])
