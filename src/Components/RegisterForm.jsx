@@ -13,13 +13,35 @@ export default function RegisterForm(){
             return data.email_REG === item.email;
         })
         setLoginStatus(isMatch ? "User has already been registered using this email" : "Successfully registered! Continue to log in!")
-    }
+        // Send POST request to add new user
+        fetch('http://localhost:3000/users', {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                name: data.username_REG,
+                email: data.email_REG,
+                password: data.password_REG,
+                id: crypto.randomUUID()
+            })
+        })
+        .then(data => {
+            console.log("User created:", data);
+        })
+        .catch(error => {
+            console.error("Error creating user:", error);
+        });
+    };
 
-    useEffect(() => { //fetches data from the fake backend, db.json file
-        fetch('https://my-json-server.typicode.com/Kuciuks/react-login-form/users')
-        .then(response => response.json())
-        .then(data => setUserData(data))
-    },[])
+    useEffect(() => {
+        fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(data => setUserData(data));
+        }, []);
+        console.log(userData)
+    
+
 
     return(
         <form onSubmit={handleSubmit(submittedData)}>

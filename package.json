@@ -4,8 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "npm run dev",
+    "dev": "concurrently \"npm run vite\" \"npm run server\"",
+    "vite": "vite",
     "build": "vite build",
+    "server": "json-server --watch db.json",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -26,3 +29,4 @@
     "vite": "^4.4.5"
   }
 }
+
